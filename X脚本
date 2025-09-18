@@ -1,0 +1,159 @@
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "X脚本"; Text ="欢迎使用xxx脚本"; Duration = 2; })wait(3)
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "X脚本"; Text ="目前还在测试中，为缝合脚本"; Duration = 2; })wait(3)
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "X脚本"; Text ="后面会出更多，敬请期待"; Duration = 2; })wait(3)
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))() local Window = WindUI:CreateWindow({
+    Title = "xxx脚本（测试） ",
+    Icon = "door-open",
+    Author = "作者：我也不知道🤓",
+    Folder = "MySuperHub",
+    
+    -- ↓ This all is Optional. You can remove it.
+    Size = UDim2.fromOffset(580, 460),
+    Transparent = true,
+    Theme = "Dark",
+    Resizable = true,
+    SideBarWidth = 200,
+    BackgroundImageTransparency = 0.42,
+    HideSearchBar = true,
+    ScrollBarEnabled = false,
+    
+    -- ↓ Optional. You can remove it.
+    --[[ You can set 'rbxassetid://' or video to Background.
+        'rbxassetid://':
+            Background = "rbxassetid://", -- rbxassetid
+        Video:
+            Background = "video:YOUR-RAW-LINK-TO-VIDEO.webm", -- video 
+    --]]
+    
+    -- ↓ Optional. You can remove it.
+    User = {
+        Enabled = true,
+        Anonymous = true,
+        Callback = function()
+            print("clicked")
+        end,
+    },
+    
+    -- !  ↓  remove this all, 
+    -- !  ↓  if you DON'T need the key system
+    KeySystem = { 
+        -- ↓ Optional. You can remove it.
+        Key = { "1234", "5678" },
+        
+        Note = "Example Key System.",
+        
+        -- ↓ Optional. You can remove it.
+        Thumbnail = {
+            Image = "rbxassetid://",
+            Title = "X脚本",
+        },
+        
+        -- ↓ Optional. You can remove it.
+        URL = "YOUR LINK TO GET KEY (Discord, Linkvertise, Pastebin, etc.)",
+        
+        -- ↓ Optional. You can remove it.
+        SaveKey = false, -- automatically save and load the key.
+        
+        -- ↓ Optional. You can remove it.
+        -- API = {} ← Services. Read about it below ↓
+    },
+})
+Window:EditOpenButton({
+    Title = "打开",
+    Icon = "monitor",
+    CornerRadius = UDim.new(0,16),
+    StrokeThickness = 2,
+    Color = ColorSequence.new( -- gradient
+        Color3.fromHex("FF0F7B"), 
+        Color3.fromHex("F89B29")
+    ),
+    OnlyMobile = false,
+    Enabled = true,
+    Draggable = true,
+})
+local Tab = Window:Tab({
+    Title = "国内脚本",
+    Icon = "bird",
+    Locked = false,
+})
+local Button = Tab:Button({
+    Title = "皮脚本",
+    Desc = "功能多",
+    Locked = false,
+    Callback = function()
+    getgenv().XiaoPi="皮脚本QQ群1002100032" loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/QQ1002100032-Roblox-Pi-script.lua"))()
+    end
+})
+local Button = Tab:Button({
+    Title = "黄某脚本",
+    Desc = "死铁轨功能多但要卡密",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaokong6/x1/refs/heads/main/黄某脚本加载器"))()
+    end
+})
+local Button = Tab:Button({
+    Title = "XA脚本",
+    Desc = "无描述",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.gitcode.com/Xingtaiduan/Scripts/raw/main/Loader.lua"))()
+    end
+})
+local Button = Tab:Button({
+    Title = "XK脚本",
+    Desc = "免费好用",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet(('https://github.com/devslopo/DVES/raw/main/XK%20Hub')))()
+    end
+})
+local Button = Tab:Button({
+    Title = "TX脚本",
+    Desc = "无描述",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/JsYb666/TX-Free-YYDS/refs/heads/main/FREE-TX-TEAM"))()
+    end
+})
+local Button = Tab:Button({
+    Title = "SN脚本",
+    Desc = "还行",
+    Locked = false,
+    Callback = function()
+    loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\120\105\97\110\105\110\103\49\53\49\47\83\78\72\85\66\47\109\97\105\110\47\83\78\104\117\98\46\108\117\97\34\41\41\40\41")()
+    end
+})
+local Button = Tab:Button({
+    Title = "神金脚本",
+    Desc = "无描述",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://github.com/shenjin55/qq-927274889/raw/refs/heads/main/roblox-shen-jin.lua"))()
+    end
+})
+local Button = Tab:Button({
+    Title = "霖溺脚本",
+    Desc = "无描述",
+    Locked = false,
+    Callback = function()
+    LnScript = "霖溺-免费版加载器"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ShenJiaoBen/ScriptLoader/refs/heads/main/Linni_FreeLoader.lua"))()
+    end
+})
+local Button = Tab:Button({
+    Title = "剑客免费版",
+    Desc = "启动可能会较长时间，请耐心等待",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Zer0neK/SG_Team/refs/heads/main/剑客免费版"))()
+    end
+})
+local Button = Tab:Button({
+    Title = "秋脚本",
+    Desc = "无描述",
+    Locked = false,
+    Callback = function()
+    _G[".秋·自制脚本 遗存抢救"]="2024dncxddtsnchzxtb0112"loadstring(game:HttpGet(utf8.char((function() return table.unpack({104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,87,83,98,117,113,47,45,47,109,97,105,110,47,37,69,55,37,65,55,37,56,66,37,67,50,37,66,55,37,69,56,37,56,55,37,65,65,37,69,53,37,56,56,37,66,54,37,69,56,37,56,52,37,57,65,37,69,54,37,57,67,37,65,67})end)())))()
+    end
+})
