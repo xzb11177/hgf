@@ -171,7 +171,7 @@ local Button = Tab:Button({
     end
 })
 local Button = Tab:Button({
-    Title = "Button",
+    Title = "RB脚本中心",
     Desc = "Test Button",
     Locked = false,
     Callback = function()
