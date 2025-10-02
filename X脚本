@@ -28,7 +28,7 @@ local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/rel
     -- ↓ Optional. You can remove it.
     User = {
         Enabled = true,
-        Anonymous = true,
+        Anonymous = false,
         Callback = function()
             print("clicked")
         end,
