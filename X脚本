@@ -166,9 +166,181 @@ local Tab = Window:Tab({
 })
 local Button = Tab:Button({
     Title = "虚空99夜",
-    Desc = "好用",
+    Desc = "由Kenny汉化",
     Locked = false,
     Callback = function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/99%E5%A4%9C%E8%99%9A%E7%A9%BA.txt"))()
+    end
+})
+local Button = Tab:Button({
+    Title = "战争大亨Kagu脚本",
+    Desc = "启动较慢，请耐心等待",
+    Locked = false,
+    Callback = function()
+local Translations = {
+    ["Money"] = "金钱",
+    ["Combat"] = "战斗区",
+    ["Auto Crate"] = "自动刷钱",
+    ["Kagu Hub"] = "X脚本汉化",
+    ["Auto Buy"] = "自动购买",
+    ["Main"] = "主菜单",
+    ["Silent Aim"] = "自瞄",
+    ["TeamCheck"] = "队伍检测",
+    ["Head"] = "头部",
+    ["HumanoidRootPart"] = "人型部位",
+    ["Random"] = "随机",
+    ["Character"] = "角色",
+    ["Fly"] = "飞行",
+    ["Fly Speet"] = "飞行速度调节",
+    ["NoClip"] = "穿墙",
+    ["No Fall Damage"] = "坠落无伤害（无用）",
+    ["Full Bright"] = "亮度",
+    ["FPS Boost"] = "帧率提升（没用）",
+    ["Fov Enabled"] = "视野调整启用",
+    ["Fov Changer"] = "调整视野",
+    ["[SONAR] War Tycoon: v1.3.0"] = " X脚本战争大亨汉化（如有翻译不对，请加QQ3314471566反馈，谢谢）",
+    ["Speed Hack"] = "速度启用",
+    ["CFrame Multiplier"] = "速度调节",
+    ["Target Part"] = "目标部位",
+    ["Enable ESP"] = "启用ESP",
+    ["Box"] = "方框",
+    ["Tracers"] = "追踪线条",
+    ["Name"] = "名称",
+    ["Health Bar"] = "血量",
+    ["Refresh ESP"] = "刷新ESP",
+    ["Kill Aura"] = "杀戮光环",
+    ["Ignore Own Vehicle"] = "忽略自身载具",
+    ["Target Helicopter"] = "瞄准直升机",
+    ["Target Vehicles"] = "瞄准载具",
+    ["Target Planes"] = "瞄准飞机",
+    ["Target GunShip"] = "瞄准炮艇",
+    ["Target Tank"] = "瞄准坦克",
+    ["Target Boats"] = "瞄准船只",
+    ["Target Drones"] = "瞄准无人机",
+    ["If the ESPs are broken or working poorly, then turn them off and restart the script without changing the window."] = "如果 ESP 出现故障或运行不良，请将其关闭，然后在不切换窗口的情况下重启脚本",
+    ["ONLY WITH RPG"] = "仅适用于RPG",
+    ["If the RPG doesn’t fire, then rejoin (it may also not reach)"] = "如果火箭筒未发射，请重新加入游戏（可能无法命中）",
+    ["Nuke Aura"] = "导弹光环",
+    ["Aura Range"] = "光环范围",
+    ["Nuke Shield"] = "导弹保护",
+    ["Rocket MultiShot"] = "RPG多发",
+    ["Rocket Count"] = "RPG数量",
+    ["Get RPG"] = "获得RPG",
+}
+
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    
+    if Translations[text] then
+        return Translations[text]
+    end
+    
+    for en, cn in pairs(Translations) do
+        if text:find(en) then
+            return text:gsub(en, cn)
+        end
+    end
+    
+    return text
+end
+
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        
+        setreadonly(getrawmetatable(game), true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败:", err)
+       
+        local translated = {}
+        local function scanAndTranslate()
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                    pcall(function()
+                        local text = gui.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                gui.Text = translatedText
+                                translated[gui] = true
+                            end
+                        end
+                    end)
+                end
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                        pcall(function()
+                            local text = gui.Text
+                            if text and text ~= "" then
+                                local translatedText = translateText(text)
+                                if translatedText ~= text then
+                                    gui.Text = translatedText
+                                    translated[gui] = true
+                                end
+                            end
+                        end)
+                    end
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.wait(0.1)
+                    pcall(function()
+                        local text = descendant.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                descendant.Text = translatedText
+                            end
+                        end
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        
+        while true do
+            scanAndTranslate()
+            task.wait(3)
+        end
+    end
+end
+
+task.wait(2)
+
+setupTranslationEngine()
+
+local success, err = pcall(function()
+--这下面填加载外部脚本
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaguya11/KaguHubRework/refs/heads/main/Scripts/Loader.lua", true))("t.me/rbxscript_robot")
+
+
+end)
+
+if not success then
+    warn("加载失败:", err)
+end
     end
 })
