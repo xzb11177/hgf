@@ -1,8 +1,6 @@
 game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "X脚本"; Text ="欢迎使用xxx脚本"; Duration = 2; })wait(3)
 game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "X脚本"; Text ="目前还在测试中，为缝合脚本"; Duration = 2; })wait(3)
 game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "X脚本"; Text ="后面会出更多，敬请期待"; Duration = 2; })wait(3)
-local GitHubSync = require(https://github.com/xzb11177/hgf/blob/122b73dd2c122438b8868a1842fa467bc44762b9/X%E8%84%9A%E6%9C%AC)
-GitHubSync:Initialize()
 local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))() local Window = WindUI:CreateWindow({
     Title = "xxx脚本（测试） ",
     Icon = "door-open",
@@ -174,10 +172,10 @@ local Button = Tab:Button({
 })
 local Button = Tab:Button({
     Title = "战争大亨Kagu脚本",
-    Desc = "启动较慢，请耐心等待",
+    Desc = "启动可能较慢，请耐心等待",
     Locked = false,
     Callback = function()
-local Translations = {
+    local Translations = {
     ["Money"] = "金钱",
     ["Combat"] = "战斗区",
     ["Auto Crate"] = "自动刷钱",
