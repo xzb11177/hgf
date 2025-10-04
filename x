@@ -1,1 +1,1 @@
-game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(版本一)
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("版本一")
