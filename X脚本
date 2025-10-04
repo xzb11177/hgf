@@ -165,6 +165,14 @@ local Button = Tab:Button({
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Yungengxin/roblox/refs/heads/main/Rb-Hub"))()
     end
 })
+local Button = Tab:Button({
+    Title = "沙脚本",
+    Desc = "Test Button",
+    Locked = false,
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/114514lzkill/ShaHUB/refs/heads/main/ShaHUB"))()
+    end
+})
 local Tab = Window:Tab({
     Title = "汉化脚本",
     Icon = "无", -- optional
