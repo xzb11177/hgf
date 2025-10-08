@@ -159,7 +159,7 @@ local Button = Tab:Button({
 })
 local Button = Tab:Button({
     Title = "RB脚本",
-    Desc = "Test Button",
+    Desc = "无描述",
     Locked = false,
     Callback = function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Yungengxin/roblox/refs/heads/main/Rb-Hub"))()
@@ -167,7 +167,7 @@ local Button = Tab:Button({
 })
 local Button = Tab:Button({
     Title = "沙脚本",
-    Desc = "Test Button",
+    Desc = "无描述",
     Locked = false,
     Callback = function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/114514lzkill/ShaHUB/refs/heads/main/ShaHUB"))()
