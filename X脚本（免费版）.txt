@@ -260,3 +260,90 @@ Tab:AddButton({
   	end    
   	
 })
+Tab:AddButton({
+
+	Name = "玩家透视",
+
+	Callback = function()
+	local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+
+
+function createHighlight(character)
+    local highlight = Instance.new("Highlight")
+    highlight.Name = "PlayerESP"
+    highlight.Adornee = character
+    highlight.Parent = character
+    highlight.FillColor = Color3.fromRGB(255, 0, 0)
+    highlight.OutlineColor = Color3.fromRGB(255, 255, 255)  -- 白色边框
+    highlight.FillTransparency = 0.5  -- 半透明
+    highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    
+    return highlight
+end
+
+
+function createBillboard(character, player)
+    local billboard = Instance.new("BillboardGui")
+    billboard.Name = "NameTag"
+    billboard.Adornee = character:WaitForChild("Head")
+    billboard.Size = UDim2.new(0, 200, 0, 50)
+    billboard.StudsOffset = Vector3.new(0, 3, 0)
+    billboard.AlwaysOnTop = true
+    
+    local textLabel = Instance.new("TextLabel")
+    textLabel.Size = UDim2.new(1, 0, 1, 0)
+    textLabel.BackgroundTransparency = 1
+    textLabel.Text = player.Name
+    textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    textLabel.TextStrokeTransparency = 0
+    textLabel.TextSize = 14
+    textLabel.Font = Enum.Font.GothamBold
+    textLabel.Parent = billboard
+    
+    billboard.Parent = character:WaitForChild("Head")
+    return billboard
+end
+
+function handlePlayer(player)
+    if player == LocalPlayer then return end
+    
+    local function characterAdded(character)
+        character:WaitForChild("Humanoid")
+        character:WaitForChild("Head")
+        
+        createHighlight(character)
+        createBillboard(character, player)
+        
+        character:WaitForChild("Humanoid").Died:Connect(function()
+            wait(5) -- 等待重生时间
+            -- 重生后会重新触发characterAdded
+        end)
+    end
+    
+    if player.Character then
+        characterAdded(player.Character)
+    end
+    player.CharacterAdded:Connect(characterAdded)
+end
+
+function initializeESP()
+
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer then
+            handlePlayer(player)
+        end
+    end
+    
+    Players.PlayerAdded:Connect(function(player)
+        handlePlayer(player)
+    end)
+end
+
+initializeESP()
+
+print("玩家透视已激活")
+  	end    
+
+})
